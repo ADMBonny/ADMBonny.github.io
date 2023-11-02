@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Everyday Space</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
@@ -12,21 +12,24 @@
     <main>
         
         <section id="apod">
-            <div class="apod-background"></div>
             
+            <h2> Astronomy Picture of the Day (APOD)</h2>
+            <div class="apod-content">
+                <img id="apod-image" alt="">
+                <div id="apod-info"></div>
+            </div>
             <label for="apod-date">Select a date: </label>
             <input type="date" id="apod-date">
             <button id="search-button">Search</button>
         </section>
         
         <section id="mars-rover">
-            <div class="mars-rover-background"></div>
             
+            <h2> Mars Rover Photos</h2>
         </section>
         
         <section id="space-news">
-            <div class="space-news-background"></div>
-            
+          
         </section>
     </main>
     <footer>
