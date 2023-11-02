@@ -22,3 +22,21 @@ function fetchAPODForCurrentDate() {
 
 
 
+function fetchAPODForSpecificDate(selectedDate) {
+    const apodUrl = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&date=${selectedDate}`;
+
+    fetch(apodUrl)
+        .then((response) => response.json())
+        .then((data) => {
+            
+            const apodSection = document.getElementById('apod');
+            apodSection.innerHTML = `
+                <h2>${data.title}</h2>
+                <img src="${data.url}" alt="${data.title}">
+                <p>${data.explanation}</p>
+            `;
+        })
+        .catch((error) => console.error('Error fetching APOD:', error));
+}
+
+
