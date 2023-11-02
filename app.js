@@ -1,5 +1,4 @@
 
-
 const apiKey = '6tUUP5PEkz9G5ui55sAZ4lHhuDg5e4ekmVjl0HYQ';
 
 
@@ -51,24 +50,29 @@ function fetchAPODForSpecificDate(selectedDate) {
 }
 
 
-function fetchMarsRoverPhotos() {
-    const marsRoverUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=${apiKey}`;
+function fetchMarsRoverPhotos(selectedDate, selectedRover, selectedCamera) {
+    
+    const marsRoverUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/${selectedRover}/photos?earth_date=${selectedDate}&camera=${selectedCamera}&api_key=${apiKey}`;
 
     fetch(marsRoverUrl)
         .then((response) => response.json())
         .then((data) => {
             
-            const marsRoverSection = document.getElementById('mars-rover');
+            const marsRoverSection = document.getElementById('mars-rover-photos');
             marsRoverSection.innerHTML = '<h2>Mars Rover Photos</h2>';
-            data.photos.forEach((photo) => {
-                marsRoverSection.innerHTML += `
-                    <div class="rover-photo">
-                        <img src="${photo.img_src}" alt="Mars Rover Photo">
-                        <p>Camera Name: ${photo.camera.full_name}</p>
-                        <p>Earth Date: ${photo.earth_date}</p>
-                    </div>
+            
+            
+            for (let i = 0; i < 2 && i < data.photos.length; i++) {
+                const photo = data.photos[i];
+                const roverPhoto = document.createElement('div');
+                roverPhoto.className = 'rover-photo';
+                
+                roverPhoto.innerHTML = `
+                    <img src="${photo.img_src}" alt="Mars Rover Photo">
                 `;
-            });
+
+                marsRoverSection.appendChild(roverPhoto);
+            }
         })
         .catch((error) => console.error('Error fetching Mars Rover photos:', error));
 }
@@ -76,7 +80,7 @@ function fetchMarsRoverPhotos() {
 
 function handleScroll() {
     const apodSection = document.getElementById('apod');
-    const marsRoverSection = document.getElementById('mars-rover');
+    const marsRoverSection = document.getElementById('mars-rover-photos');
     const spaceNewsSection = document.getElementById('space-news');
 
     
@@ -87,22 +91,40 @@ function handleScroll() {
         
         fetchAPODForCurrentDate();
     } else if (scrollPosition < apodSection.offsetHeight + marsRoverSection.offsetHeight) {
-        
-        fetchMarsRoverPhotos();
-    } else {
        
+    } else {
+        
     }
 }
+
 
 function handleUserInteractions() {
     const randomButton = document.getElementById('random-button');
     const searchButton = document.getElementById('search-button');
+    const exploreMarsButton = document.getElementById('explore-mars-button');
+    const marsForm = document.getElementById('mars-form');
 
     randomButton.addEventListener('click', fetchAPODForCurrentDate);
-
+    
     searchButton.addEventListener('click', () => {
         const selectedDate = document.getElementById('apod-date').value;
         fetchAPODForSpecificDate(selectedDate);
+    });
+
+    exploreMarsButton.addEventListener('click', () => {
+        marsForm.style.display = 'block';
+        const marsRoverPhotosSection = document.getElementById('mars-rover-photos');
+        marsRoverPhotosSection.style.display = 'none';
+    });
+    
+    marsForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const selectedDate = document.getElementById('mars-date').value;
+        const selectedRover = document.getElementById('rover-selection').value;
+        const selectedCamera = document.getElementById('camera-selection').value;
+
+        fetchMarsRoverPhotos(selectedDate, selectedRover, selectedCamera);
     });
 }
 
@@ -113,5 +135,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
     fetchAPODForCurrentDate();
-    fetchMarsRoverPhotos();
 });

@@ -17,19 +17,45 @@
             <div class="apod-content">
                 <img id="apod-image" alt="">
                 <div id="apod-info"></div>
+               
+                <button id="explore-mars-button">Explore Mars</button>
             </div>
             <label for="apod-date">Select a date: </label>
             <input type="date" id="apod-date">
             <button id="search-button">Search</button>
         </section>
+
         
-        <section id="mars-rover">
-            
-            <h2> Mars Rover Photos</h2>
+        <form id="mars-form" style="display: none;">
+            <label for="mars-date">Date Input (YYYY-MM-DD):</label>
+            <input type="date" id="mars-date" required>
+
+            <label for="rover-selection">Rover Selection:</label>
+            <select id="rover-selection" required>
+                <option value="curiosity">Curiosity</option>
+                <option value="opportunity">Opportunity</option>
+                <option value="spirit">Spirit</option>
+            </select>
+
+            <label for="camera-selection">Camera Selection:</label>
+            <select id="camera-selection" required>
+                <option value="FHAZ">Front Hazard Avoidance Camera (FHAZ)</option>
+                <option value="RHAZ">Rear Hazard Avoidance Camera (RHAZ)</option>
+                <option value="MAST">Mast Camera (MAST)</option>
+                
+            </select>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        
+        <section id="mars-rover-photos" style="display: none;">
+           
         </section>
+
         
         <section id="space-news">
-          
+            
         </section>
     </main>
     <footer>
