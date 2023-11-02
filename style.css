@@ -1,0 +1,58 @@
+
+section {
+    padding: 20px;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    height: 800px; 
+    position: relative;
+    overflow: hidden;
+}
+
+
+.apod-background {
+    background-image: url('https://cdn.mos.cms.futurecdn.net/CCn9fXiP4SsU8jpG6hb2yh-650-80.jpg.webp');
+    background-size: cover; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+
+.mars-rover-background {
+    background-image: url('https://cdn.mos.cms.futurecdn.net/QjXNCfC3zrFYnuPN3yiALC.jpg');
+    background-size: cover; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.space-news-background {
+    background-image: url('https://cdn.mos.cms.futurecdn.net/wdvJhU6FFY5pHbQADuuFkN-650-80.jpg.webp');
+    background-size: cover; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+
+button {
+    background-color: #0074d9;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+input {
+    padding: 5px;
+}
