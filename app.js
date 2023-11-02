@@ -78,3 +78,23 @@ function handleScroll() {
         
     }
 }
+
+function handleUserInteractions() {
+    const randomButton = document.getElementById('random-button');
+    const searchButton = document.getElementById('search-button');
+
+    randomButton.addEventListener('click', fetchAPODForCurrentDate);
+
+    searchButton.addEventListener('click', () => {
+        const selectedDate = document.getElementById('apod-date').value;
+        fetchAPODForSpecificDate(selectedDate);
+    });
+}
+
+
+window.addEventListener('scroll', handleScroll);
+handleUserInteractions();
+
+
+fetchAPODForCurrentDate();
+fetchMarsRoverPhotos();
