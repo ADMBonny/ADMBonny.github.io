@@ -9,7 +9,7 @@ section {
     overflow: hidden;
 }
 
-
+/*
 .apod-background {
     background-image: url('https://cdn.mos.cms.futurecdn.net/CCn9fXiP4SsU8jpG6hb2yh-650-80.jpg.webp');
     background-size: cover; 
@@ -32,7 +32,7 @@ section {
     bottom: 0;
     z-index: -1;
 }
-
+*/
 .space-news-background {
     background-image: url('https://cdn.mos.cms.futurecdn.net/wdvJhU6FFY5pHbQADuuFkN-650-80.jpg.webp');
     background-size: cover; 
