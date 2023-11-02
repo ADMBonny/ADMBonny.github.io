@@ -40,3 +40,21 @@ function fetchAPODForSpecificDate(selectedDate) {
 }
 
 
+function fetchMarsRoverPhotos() {
+    const marsRoverUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=${apiKey}`;
+
+    fetch(marsRoverUrl)
+        .then((response) => response.json())
+        .then((data) => {
+            
+            const marsRoverSection = document.getElementById('mars-rover');
+            marsRoverSection.innerHTML = '<h2>Mars Rover Photos</h2>';
+            data.photos.forEach((photo) => {
+                marsRoverSection.innerHTML += `
+                    <img src="${photo.img_src}" alt="Mars Rover Photo">
+                `;
+            });
+        })
+        .catch((error) => console.error('Error fetching Mars Rover photos:', error));
+}
+
