@@ -1,6 +1,6 @@
 
-const apiKey = '6tUUP5PEkz9G5ui55sAZ4lHhuDg5e4ekmVjl0HYQ';
 
+const apiKey = '6tUUP5PEkz9G5ui55sAZ4lHhuDg5e4ekmVjl0HYQ';
 
 
 function fetchAPODForCurrentDate() {
@@ -11,15 +11,20 @@ function fetchAPODForCurrentDate() {
         .then((data) => {
             
             const apodSection = document.getElementById('apod');
-            apodSection.innerHTML = `
-                <h2>${data.title}</h2>
-                <img src="${data.url}" alt="${data.title}">
+            const apodImage = document.getElementById('apod-image');
+            const apodInfo = document.getElementById('apod-info');
+            
+            apodImage.src = data.url;
+            apodImage.alt = data.title;
+
+            apodInfo.innerHTML = `
+                <h3>${data.title}</h3>
+                <p>Date: ${data.date}</p>
                 <p>${data.explanation}</p>
             `;
         })
         .catch((error) => console.error('Error fetching APOD:', error));
 }
-
 
 
 function fetchAPODForSpecificDate(selectedDate) {
@@ -30,9 +35,15 @@ function fetchAPODForSpecificDate(selectedDate) {
         .then((data) => {
             
             const apodSection = document.getElementById('apod');
-            apodSection.innerHTML = `
-                <h2>${data.title}</h2>
-                <img src="${data.url}" alt="${data.title}">
+            const apodImage = document.getElementById('apod-image');
+            const apodInfo = document.getElementById('apod-info');
+            
+            apodImage.src = data.url;
+            apodImage.alt = data.title;
+
+            apodInfo.innerHTML = `
+                <h3>${data.title}</h3>
+                <p>Date: ${data.date}</p>
                 <p>${data.explanation}</p>
             `;
         })
@@ -51,7 +62,11 @@ function fetchMarsRoverPhotos() {
             marsRoverSection.innerHTML = '<h2>Mars Rover Photos</h2>';
             data.photos.forEach((photo) => {
                 marsRoverSection.innerHTML += `
-                    <img src="${photo.img_src}" alt="Mars Rover Photo">
+                    <div class="rover-photo">
+                        <img src="${photo.img_src}" alt="Mars Rover Photo">
+                        <p>Camera Name: ${photo.camera.full_name}</p>
+                        <p>Earth Date: ${photo.earth_date}</p>
+                    </div>
                 `;
             });
         })
@@ -75,7 +90,7 @@ function handleScroll() {
         
         fetchMarsRoverPhotos();
     } else {
-        
+       
     }
 }
 
@@ -92,9 +107,11 @@ function handleUserInteractions() {
 }
 
 
-window.addEventListener('scroll', handleScroll);
-handleUserInteractions();
+document.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('scroll', handleScroll);
+    handleUserInteractions();
 
-
-fetchAPODForCurrentDate();
-fetchMarsRoverPhotos();
+    
+    fetchAPODForCurrentDate();
+    fetchMarsRoverPhotos();
+});
