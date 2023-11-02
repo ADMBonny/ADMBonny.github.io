@@ -58,3 +58,23 @@ function fetchMarsRoverPhotos() {
         .catch((error) => console.error('Error fetching Mars Rover photos:', error));
 }
 
+
+function handleScroll() {
+    const apodSection = document.getElementById('apod');
+    const marsRoverSection = document.getElementById('mars-rover');
+    const spaceNewsSection = document.getElementById('space-news');
+
+    
+    const scrollPosition = window.scrollY;
+
+    
+    if (scrollPosition < apodSection.offsetHeight) {
+        
+        fetchAPODForCurrentDate();
+    } else if (scrollPosition < apodSection.offsetHeight + marsRoverSection.offsetHeight) {
+        
+        fetchMarsRoverPhotos();
+    } else {
+        
+    }
+}
