@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
 /* Global Styles */
 body {
     font-family: Arial, sans-serif;
@@ -41,7 +42,7 @@ header {
 /* Rover Section Styles */
 #rover-info {
     margin-top: 20px;
-    text-align: center;
+    text-align: left;
 }
 
 #date-input {
