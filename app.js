@@ -1,6 +1,6 @@
 
 
-const apiKey = '6tUUP5PEkz9G5ui55sAZ4lHhuDg5e4ekmVjl0HYQ';
+const apiKey = '6tUUP5PEkz9G5ui55sAZ4lHhuDg5e4ekmVjl0HYQ'; 
 
 
 function fetchAPODForCurrentDate() {
@@ -9,52 +9,17 @@ function fetchAPODForCurrentDate() {
     fetch(apodUrl)
         .then((response) => response.json())
         .then((data) => {
-            
-            const apodSection = document.getElementById('apod');
             const apodImage = document.getElementById('apod-image');
             const apodInfo = document.getElementById('apod-info');
-            
+
             apodImage.src = data.url;
             apodImage.alt = data.title;
-
-            apodInfo.innerHTML = `
-                <h3>${data.title}</h3>
-                <p>Date: ${data.date}</p>
-                <p>${data.explanation}</p>
-            `;
+            apodInfo.textContent = data.explanation;
         })
-        .catch((error) => console.error('Error fetching APOD:', error));
+        .catch((error) => {
+            console.error('Error fetching APOD data:', error);
+        });
 }
-
-
-function fetchMarsRoverPhotos(selectedDate, selectedRover, selectedCamera) {
-    
-    const marsRoverUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/${selectedRover}/photos?earth_date=${selectedDate}&camera=${selectedCamera}&api_key=${apiKey}`;
-
-    fetch(marsRoverUrl)
-        .then((response) => response.json())
-        .then((data) => {
-            
-            const marsRoverSection = document.getElementById('mars-rover-photos');
-            marsRoverSection.innerHTML = '<h2>Mars Rover Photos</h2>';
-            
-            
-            for (let i = 0; i < 2 && i < data.photos.length; i++) {
-                const photo = data.photos[i];
-                const roverPhoto = document.createElement('div');
-                roverPhoto.className = 'rover-photo';
-                
-                roverPhoto.innerHTML = `
-                    <img src="${photo.img_src}" alt="Mars Rover Photo">
-                `;
-
-                marsRoverSection.appendChild(roverPhoto);
-            }
-        })
-        .catch((error) => console.error('Error fetching Mars Rover photos:', error));
-}
-
-
 
 
 function handleUserInteractions() {
@@ -62,20 +27,17 @@ function handleUserInteractions() {
     const exploreMarsButton = document.getElementById('explore-mars-button');
     const previousAPODButton = document.getElementById('previous-apod-button');
     const apodForm = document.getElementById('apod-form');
+    const marsForm = document.getElementById('mars-form');
 
     randomButton.addEventListener('click', fetchAPODForCurrentDate);
 
     exploreMarsButton.addEventListener('click', () => {
-        const marsForm = document.getElementById('mars-form');
+        apodForm.style.display = 'none';
         marsForm.style.display = 'block';
-        const marsRoverPhotosSection = document.getElementById('mars-rover-photos');
-        marsRoverPhotosSection.style.display = 'none';
     });
 
     previousAPODButton.addEventListener('click', () => {
-        const apodForm = document.getElementById('apod-form');
         apodForm.style.display = 'block';
-        const marsForm = document.getElementById('mars-form');
         marsForm.style.display = 'none';
     });
 
@@ -86,18 +48,71 @@ function handleUserInteractions() {
     });
 
     
+    const searchMarsButton = document.getElementById('search-mars-button');
+    searchMarsButton.addEventListener('click', () => {
+        const marsDateInput = document.getElementById('mars-date').value;
+        const selectedRover = document.querySelector('input[name="rover"]:checked').value;
+        const selectedCamera = document.querySelector('input[name="camera"]:checked').value;
+        const marsRoverApiUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/${selectedRover}/photos?earth_date=${marsDateInput}&camera=${selectedCamera}&api_key=${apiKey}`;
+
+        fetch(marsRoverApiUrl)
+            .then((response) => response.json())
+            .then((data) => {
+                const marsPhotosSection = document.getElementById('mars-rover-photos');
+                marsPhotosSection.innerHTML = '';
+
+                data.photos.forEach((photo) => {
+                    const img = document.createElement('img');
+                    img.src = photo.img_src;
+                    marsPhotosSection.appendChild(img);
+                });
+            })
+            .catch((error) => {
+                console.error('Error fetching Mars photos:', error);
+            });
+    });
+
+    
     function handleScroll() {
         const apodSection = document.getElementById('apod');
         const marsRoverSection = document.getElementById('mars-rover-photos');
         const spaceNewsSection = document.getElementById('space-news');
+
+        const scrollPosition = window.scrollY;
+
+        if (scrollPosition < apodSection.offsetHeight) {
+            fetchAPODForCurrentDate();
+        } else if (scrollPosition < apodSection.offsetHeight + marsRoverSection.offsetHeight) {
+            const moreMarsRoverButton = document.getElementById('more-mars-rover-button');
+    
+            moreMarsRoverButton.addEventListener('click', () => {
+                const marsRoverApiUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=${marsRoverApiKey}`;
+                
+                fetch(marsRoverApiUrl)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        const marsRoverPhotosSection = document.getElementById('mars-rover-photos');
+                        
+                        data.photos.forEach((photo) => {
+                            const img = document.createElement('img');
+                            img.src = photo.img_src;
+                            marsRoverPhotosSection.appendChild(img);
+                        });
+                    })
+                    .catch((error) => {
+                        console.error('Error fetching more Mars Rover photos:', error);
+                    });
+            });
+        
+        } else {
+            // Add code to update Space News content if needed
+        }
     }
 
-    
     window.addEventListener('scroll', handleScroll);
 }
 
-
 document.addEventListener('DOMContentLoaded', handleUserInteractions);
 
-
 fetchAPODForCurrentDate();
+console.log(exploreMars);

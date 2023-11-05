@@ -3,45 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Everyday Space</title>
     <link rel="stylesheet" href="style.css">
+    <title>Everyday Space</title>
 </head>
 <body>
-    
     <header>
-        <h1>Everyday Space</h1>
+
+        <h1>Everyday Space</h1> 
     </header>
-
-    
-    <section id="apod">
-        <h2>Astronomy Picture of the Day (APOD)</h2>
-        <div class="apod-content">
-            <img id="apod-image" alt="">
-            <div id="apod-info"></div>
+    <main>
+        <div id="apod-section" class="content">
+            <div>
+                <h2>Today's APOD</h2>
+                
+                <div id="current-apod-content">
+                    
+                </div>
+            </div>
+            <div>
+                <h2>Search for Previous APOD</h2>
+                <label for="apod-date-input">Select Date:</label>
+                <input type="date" id="apod-date-input">
+                <button id="get-apod-button" class="submit-button">Get APOD</button>
+                <div id="apod-content">
+                    
+                </div>
+            </div>
         </div>
-        <button id="previous-apod-button">Previous APOD Posts</button>
-        <button id="explore-mars-button">Explore Mars</button>
-    </section>
-
-    
-    <form id="apod-form" style="display: none;">
-        <label for="apod-date">Select a date:</label>
-        <input type="date" id="apod-date" required>
-        <button id="search-button">Search</button>
-    </form>
-
-    
-    <section id="mars-rover-photos">
-        <h2>Mars Rover Photos</h2>
         
-    </section>
 
-    
-    <section id="space-news">
-        <h2>Space News</h2>
-       
-    </section>
+        <div id="rover-info">
+            <h3>Mars Rover Photos</h3>
+            
+            <label for="date-input">Date Input</label>
+            <input type="date" id="date-input">
+            <label for="rover-select">Rover Selection</label>
+            <select id="rover-select" class="select-box">
+                <option value="curiosity">Curiosity</option>
+                <option value="opportunity">Opportunity</option>
+                <option value="spirit">Spirit</option>
+            </select>
+        </div>
+        <div>
+            <label for="camera-select">Select Camera:</label>
+            <select id="camera-select" class="select-box">
+                <option value="FHAZ">Front Hazard Avoidance Camera (FHAZ)</option>
+                <option value="RHAZ">Rear Hazard Avoidance Camera (RHAZ)</option>
+                <option value="MAST">Mast Camera (MAST)</option>
+                <option value="CHEMCAM">Chemistry and Camera Complex (CHEMCAM)</option>
+                <option value="MAHLI">Mars Hand Lens Imager (MAHLI)</option>
+                <option value="MARDI">Mars Descent Imager (MARDI)</option>
+                
+            </select>
+            <button id="get-images-button" class="submit-button">Get Images</button>
+        </div>
 
+        <section id="mars-rover-section" class="content">
+            
+        </section>
+    </main>
+    <footer>
+        
+    </footer>
     <script src="app.js"></script>
 </body>
 </html>
