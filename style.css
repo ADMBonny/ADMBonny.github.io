@@ -1,52 +1,87 @@
+/* Global Styles */
 body {
     font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
-  }
-  
-  header {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-  }
-  
-  h1 {
-    font-size: 36px;
-    margin: 0;
-  }
-  
-  p {
-    font-size: 18px;
-    margin: 0;
-  }
-  
-  main {
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    padding: 20px;
-  }
-  
-  .content {
+}
+
+.content {
     background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    margin: 20px;
     padding: 20px;
-    margin: 10px;
-    flex: 1;
-  }
-  
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-  
-  footer {
-    text-align: center;
-    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2  {
+    color: #fff;
+}
+h3 {
+    color: #000;
+}
+
+/* Header Styles */
+header {
     background-color: #333;
     color: #fff;
-  }
-  
+    text-align: center;
+    padding: 20px;
+}
+
+/* APOD Section Styles */
+#apod-section {
+    text-align: center;
+}
+
+#apod-content {
+    margin-top: 20px;
+}
+
+/* Rover Section Styles */
+#rover-info {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#date-input {
+    width: 12%;
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.select-box {
+    width: 12%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.submit-button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Mars Rover Image Styles */
+#rover-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#rover-image {
+    max-width: 100%;
+    display: block;
+    margin: 10px;
+}
+
+/* Calendar Icon Styles */
+#calendar-icon {
+    font-size: 20px;
+    vertical-align: middle;
+    margin-left: 10px;
+}
