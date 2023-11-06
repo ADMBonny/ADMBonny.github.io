@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <title>Everyday Space</title>
 </head>
@@ -11,7 +13,19 @@
 
         <h1>Everyday Space</h1> 
     </header>
-    <main>
+    <main class="container">
+
+        <div class="header content">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-6">
+                    <p>Welcome To</p>
+                    <h3>Everyday Space</h3>
+                </div>
+                <div class="col-lg-6">
+                    <img src="https://images.pexels.com/photos/41162/moon-landing-apollo-11-nasa-buzz-aldrin-41162.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" srcset="">
+                </div>
+            </div>
+        </div>
         <div id="apod-section" class="content">
             <div>
                 <h2>Today's APOD</h2>
@@ -22,9 +36,18 @@
             </div>
             <div>
                 <h2>Search for Previous APOD</h2>
-                <label for="apod-date-input">Select Date:</label>
-                <input type="date" id="apod-date-input">
-                <button id="get-apod-button" class="submit-button">Get APOD</button>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <label for="apod-date-input">Select Date:</label>
+                        <input type="date" id="apod-date-input" class="form-control">
+                    </div>
+                    <div class="col-lg-6">
+                        <br>
+                        <button id="get-apod-button" class="submit-button">Get APOD</button>
+                    </div>
+                </div>
+                
+                
                 <div id="apod-content">
                     
                 </div>
@@ -32,30 +55,45 @@
         </div>
         
 
+        <div class="row">
+            <div class="col-lg-3">
+                <label for="date-input">Date Input</label>
+                <input type="date" id="date-input" class="form-control">
+            </div>
+            <div class="col-lg-3">
+                <label for="rover-select">Rover Selection</label>
+                <select id="rover-select" class="select-box form-control">
+                    <option value="curiosity">Curiosity</option>
+                    <option value="opportunity">Opportunity</option>
+                    <option value="spirit">Spirit</option>
+                </select>
+            </div>
+            <div class="col-lg-3"><label for="camera-select">Select Camera:</label>
+                <select id="camera-select" class="select-box form-control">
+                    <option value="FHAZ">Front Hazard Avoidance Camera (FHAZ)</option>
+                    <option value="RHAZ">Rear Hazard Avoidance Camera (RHAZ)</option>
+                    <option value="MAST">Mast Camera (MAST)</option>
+                    <option value="CHEMCAM">Chemistry and Camera Complex (CHEMCAM)</option>
+                    <option value="MAHLI">Mars Hand Lens Imager (MAHLI)</option>
+                    <option value="MARDI">Mars Descent Imager (MARDI)</option>
+                    
+                </select>
+            </div>
+            <div class="col-lg-3">
+                <br>
+                <button id="get-images-button" class="submit-button">Get Images</button>
+            </div>
+        </div>
+
         <div id="rover-info">
             <h3>Mars Rover Photos</h3>
             
-            <label for="date-input">Date Input</label>
-            <input type="date" id="date-input">
-            <label for="rover-select">Rover Selection</label>
-            <select id="rover-select" class="select-box">
-                <option value="curiosity">Curiosity</option>
-                <option value="opportunity">Opportunity</option>
-                <option value="spirit">Spirit</option>
-            </select>
+            
+           
         </div>
         <div>
-            <label for="camera-select">Select Camera:</label>
-            <select id="camera-select" class="select-box">
-                <option value="FHAZ">Front Hazard Avoidance Camera (FHAZ)</option>
-                <option value="RHAZ">Rear Hazard Avoidance Camera (RHAZ)</option>
-                <option value="MAST">Mast Camera (MAST)</option>
-                <option value="CHEMCAM">Chemistry and Camera Complex (CHEMCAM)</option>
-                <option value="MAHLI">Mars Hand Lens Imager (MAHLI)</option>
-                <option value="MARDI">Mars Descent Imager (MARDI)</option>
-                
-            </select>
-            <button id="get-images-button" class="submit-button">Get Images</button>
+            
+            
         </div>
 
         <section id="mars-rover-section" class="content">
